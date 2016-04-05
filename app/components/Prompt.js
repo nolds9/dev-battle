@@ -1,4 +1,3 @@
-// TODO: refactor presenter component to communicate w/ container
 var React = require('react')
 var transparentBg = require("../styles").transparentBg
 var PropTypes = React.PropTypes;
