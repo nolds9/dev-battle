@@ -1,14 +1,15 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var styles = require("../styles/index")
+var styles = require("../styles/index");
 var Link = require('react-router').Link;
-var UserDetails = require('./UserDetails')
-var UserDetailsWrapper = require('./UserDetailsWrapper')
-var MainContainer = require('../containers/MainContainer')
+var UserDetails = require('./UserDetails');
+var UserDetailsWrapper = require('./UserDetailsWrapper');
+var MainContainer = require('../containers/MainContainer');
+var Loading = require('./Loading')
 
 function ConfirmBattle (props) {
   return props.isLoading === true
-    ? <p>LOADING</p>
+    ? <Loading speed={200} text={"Wait For It"}/>
   : <MainContainer>
         <h1>Confirm Players</h1>
         <div className='col-sm-8 col-sm-offset-2'>

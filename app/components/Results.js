@@ -5,6 +5,7 @@ var UserDetails = require('../components/UserDetails')
 var UserDetailsWrapper = require('../components/UserDetailsWrapper')
 var MainContainer = require('../containers/MainContainer')
 var Link = require('react-router').Link;
+var Loading = require('./Loading')
 
 function StartOverButton (props){
   return (
@@ -20,7 +21,7 @@ function Results(props){
   // check to see if the api call is still happening
   if (props.isLoading) {
     // if it is, show some loading text
-    return (<p>LOADING!</p>)
+    return (<Loading speed={400} text={"Drum Roll Please"} />)
   }
   // check to see if each score is equal to one another
   if (props.scores[0] === props.scores[1]) {
