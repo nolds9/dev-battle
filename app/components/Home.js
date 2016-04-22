@@ -7,8 +7,8 @@ var Home = React.createClass({
   render: function(){
     return (
       <MainContainer>
-        <h1>Super Hack Bros</h1>
-        <p>Some Fancy filler</p>
+        <h1>Hacker Arena</h1>
+        <p>Two will enter, only one will win</p>
         <Link to="/playerOne">
           <button type="btn btn-lg btn-success">Get Started</button>
         </Link>
