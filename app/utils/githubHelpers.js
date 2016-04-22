@@ -1,9 +1,9 @@
-var axios = require('axios');
+import axios from 'axios'
 
 // If Github rate limits us, we can sign up for a new key
-var githubId = require('../../env').githubId
-var githubSecret = require('../../env').githubSecret
-var param = "?client_id=" + githubId + "&client_secret=" + githubSecret;
+const githubId = require('../../env').githubId
+const githubSecret = require('../../env').githubSecret
+const param = "?client_id=" + githubId + "&client_secret=" + githubSecret;
 
 // returns a promise containing a github users data
 function getUserInfo(username){
@@ -44,7 +44,7 @@ function calculateScores (players) {
   ]
 }
 
-var helpers = {
+const helpers = {
   getPlayersInfo: function (players) {
     // call getUserInfo on each player in players, resolve only once ALL calls made
     return axios.all(players.map(function(username){
@@ -59,8 +59,8 @@ var helpers = {
     })
   },
   battle: function (players) {
-    var playerOneData = getPlayersData(players[0]);
-    var playerTwoData = getPlayersData(players[1]);
+    const playerOneData = getPlayersData(players[0]);
+    const playerTwoData = getPlayersData(players[1]);
 
     return axios.all([playerOneData, playerTwoData])
       .then(calculateScores)
@@ -70,4 +70,4 @@ var helpers = {
   }
 };
 
-module.exports = helpers
+export default helpers

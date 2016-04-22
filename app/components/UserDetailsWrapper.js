@@ -1,13 +1,12 @@
-var React = require('react');
-var PropTypes = React.PropTypes
+import React from 'react'
 
-function UserDetailsWrapper (props) {
+function UserDetailsWrapper ({header, children}) {
   return (
     <div className='col-sm-6'>
-      <p className='lead'>{props.header}</p>
-      {props.children}
+      <p className='lead'>{header}</p>
+      {children}
     </div>
   )
 }
 
-module.exports = UserDetailsWrapper
+export default UserDetailsWrapper

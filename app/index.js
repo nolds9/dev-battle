@@ -9,9 +9,9 @@ Testable
 
 //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-var React = require('react');
-var ReactDom = require('react-dom');
-var routes = require('./config/routes')
+import React from 'react'
+import ReactDom  from 'react-dom'
+import routes from './config/routes'
 
 ReactDom.render(
   routes,

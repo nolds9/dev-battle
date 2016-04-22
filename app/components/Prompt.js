@@ -1,19 +1,18 @@
-var React = require('react')
-var transparentBg = require("../styles").transparentBg
-var PropTypes = React.PropTypes;
+import React, { PropTypes } from 'react'
+import styles from '../styles'
 
-function Prompt (props){
+function Prompt ({onSubmitUser, header, username, onUpdateUser}) {
   return(
-    <div className='jumbotron col-sm-6 col-sm-offset-3 text-center' style={transparentBg}>
-      <h1>{props.header}</h1>
+    <div className='jumbotron col-sm-6 col-sm-offset-3 text-center' style={styles.transparentBg}>
+      <h1>{header}</h1>
       <div className="col-sm-12">
-        <form onSubmit={props.onSubmitUser}>
+        <form onSubmit={onSubmitUser}>
           <div className="form-group">
             <input
               className="form-control"
               placeholder="Github Username"
-              onChange={props.onUpdateUser}
-              value={props.username}
+              onChange={onUpdateUser}
+              value={username}
               type="text" />
           </div>
           <div className="form-group col-sm-4 col-sm-offset-4">
@@ -37,4 +36,4 @@ Prompt.propTypes = {
 }
 
 
-module.exports = Prompt
+export default Prompt

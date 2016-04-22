@@ -1,28 +1,27 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var styles = require("../styles/index");
-var Link = require('react-router').Link;
-var UserDetails = require('./UserDetails');
-var UserDetailsWrapper = require('./UserDetailsWrapper');
-var MainContainer = require('../containers/MainContainer');
-var Loading = require('./Loading')
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
+import styles from "../styles"
+import UserDetails from './UserDetails'
+import UserDetailsWrapper from './UserDetailsWrapper'
+import MainContainer from '../containers/MainContainer'
+import Loading from './Loading'
 
-function ConfirmBattle (props) {
-  return props.isLoading === true
+function ConfirmBattle ({isLoading, playersInfo, onInitiateBattle}) {
+  return isLoading === true
     ? <Loading speed={200} text={"Wait For It"}/>
   : <MainContainer>
         <h1>Confirm Players</h1>
         <div className='col-sm-8 col-sm-offset-2'>
           <UserDetailsWrapper header='Player 1'>
-            <UserDetails info={props.playersInfo[0]} />
+            <UserDetails info={playersInfo[0]} />
           </UserDetailsWrapper>
           <UserDetailsWrapper header='Player 2'>
-            <UserDetails info={props.playersInfo[1]} />
+            <UserDetails info={playersInfo[1]} />
           </UserDetailsWrapper>
         </div>
         <div className='col-sm-8 col-sm-offset-2'>
           <div className='col-sm-12' style={styles.space}>
-            <button type='button' className='btn btn-lg btn-success' onClick={props.onInitiateBattle}>Initiate Battle!</button>
+            <button type='button' className='btn btn-lg btn-success' onClick={onInitiateBattle}>Initiate Battle!</button>
           </div>
           <div className='col-sm-12' style={styles.space}>
             <Link to='/playerOne'>
@@ -39,4 +38,4 @@ ConfirmBattle.propTypes = {
   playersInfo: PropTypes.array.isRequired,
 }
 
-module.exports = ConfirmBattle;
+export default ConfirmBattle

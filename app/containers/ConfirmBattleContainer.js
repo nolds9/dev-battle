@@ -1,8 +1,8 @@
-var React = require('react');
-var ConfirmBattle = require('../components/ConfirmBattle');
-var githubHelpers = require('../utils/githubHelpers');
+import React from 'react'
+import ConfirmBattle from '../components/ConfirmBattle'
+import githubHelpers from '../utils/githubHelpers'
 
-var ConfirmBattleContainer = React.createClass({
+const ConfirmBattleContainer = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
@@ -15,7 +15,7 @@ var ConfirmBattleContainer = React.createClass({
   componentDidMount: function(){
   // once this components render to the view:
     // grab usernames
-    var query = this.props.location.query
+    const { query } = this.props.location
     // fetch their info from api, then update the state
     githubHelpers
       .getPlayersInfo([query.playerOne, query.playerTwo])
@@ -44,4 +44,4 @@ var ConfirmBattleContainer = React.createClass({
   }
 });
 
-module.exports = ConfirmBattleContainer;
+export default ConfirmBattleContainer
