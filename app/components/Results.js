@@ -16,6 +16,17 @@ function StartOverButton (props) {
   )
 }
 
+//  if it'ts a tie, show the user some UI
+function Tie () {
+  return (
+    <MainContainer>
+      <h1>It's a tie!</h1>
+      <StartOverButton />
+    </MainContainer>
+  )
+}
+
+
 function Results({ isLoading, scores, playersInfo }){
   // check to see if the api call is still happening
   if (isLoading) {
@@ -23,15 +34,7 @@ function Results({ isLoading, scores, playersInfo }){
     return (<Loading speed={400} text={"Drum Roll Please"} />)
   }
   // check to see if each score is equal to one another
-  if (scores[0] === scores[1]) {
-    return (
-      //  if it'ts a tie, show the user some UI
-      <MainContainer>
-        <h1>It's a tie!</h1>
-        <StartOverButton />
-      </MainContainer>
-    )
-  }
+  if (scores[0] === scores[1]) { return <Tie /> }
 
   // Otherwise, calculate which player won
   const winningIndex = scores[0] > scores[1] ? 0 : 1

@@ -3,16 +3,16 @@ import axios from 'axios'
 // If Github rate limits us, we can sign up for a new key
 const githubId = require('../../env').githubId
 const githubSecret = require('../../env').githubSecret
-const param = "?client_id=" + githubId + "&client_secret=" + githubSecret;
+const param = `?client_id=${githubId}&client_secret=${githubSecret}`
 
 // returns a promise containing a github users data
-function getUserInfo(username){
-  return axios.get('http://api.github.com/users/' + username + param)
+function getUserInfo(username = 'dhh'){
+  return axios.get(`http://api.github.com/users/${username + param}`)
 }
 
-function getRepos (username) {
+function getRepos (username = 'dhh') {
   // fetch username's repos
-  return axios.get('http://api.github.com/users/' + username + '/repos' + param + '&per_page=100')
+  return axios.get(`http://api.github.com/users/${username}/repos${param}&per_page=100`)
 }
 
 function getTotalStars (repos) {
@@ -20,16 +20,16 @@ function getTotalStars (repos) {
   return repos.data.reduce( (prev, current ) => prev + current.stargazers_count, 0)
 }
 
-function getPlayersData (player) {
+function getPlayersData ({login, followers}) {
   // get repos
-  return getRepos(player.login)
+  return getRepos(login)
     // getTotalStars
     .then(getTotalStars)
     // return an object with that data
     .then( (totalStars) => (
       {
-        followers: player.followers,
-        totalStars: totalStars
+        followers,
+        totalStars
       }
     ))
 }
