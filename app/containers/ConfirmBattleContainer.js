@@ -6,27 +6,27 @@ const ConfirmBattleContainer = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-  getInitialState: function () {
+  getInitialState  ( ) {
     return {
       isLoading: true,
       playersInfo: []
     }
   },
-  componentDidMount: function(){
+  componentDidMount () {
   // once this components render to the view:
     // grab usernames
     const { query } = this.props.location
     // fetch their info from api, then update the state
     githubHelpers
       .getPlayersInfo([query.playerOne, query.playerTwo])
-      .then(function(players){
+      .then((players) => {
         this.setState({
           isLoading: false,
           playersInfo: [players[0], players[1]]
         })
-      }.bind(this)) // make sure to preserve context to the component
+      })
   },
-  handleInitiateBattle: function(){
+  handleInitiateBattle () {
     this.context.router.push({
       pathname: "/results",
       state: {
@@ -34,7 +34,7 @@ const ConfirmBattleContainer = React.createClass({
       }
     })
   },
-  render: function(){
+  render () {
     return(
       <ConfirmBattle
         isLoading={this.state.isLoading}

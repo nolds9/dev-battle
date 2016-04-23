@@ -17,9 +17,7 @@ function getRepos (username) {
 
 function getTotalStars (repos) {
   // calculate all the stars that the users has
-  return repos.data.reduce(function (prev, current ) {
-    return prev + current.stargazers_count
-  }, 0)
+  return repos.data.reduce( (prev, current ) => prev + current.stargazers_count, 0)
 }
 
 function getPlayersData (player) {
@@ -28,12 +26,12 @@ function getPlayersData (player) {
     // getTotalStars
     .then(getTotalStars)
     // return an object with that data
-    .then(function (totalStars) {
-      return {
+    .then( (totalStars) => (
+      {
         followers: player.followers,
         totalStars: totalStars
       }
-    })
+    ))
 }
 
 function calculateScores (players) {
@@ -45,26 +43,22 @@ function calculateScores (players) {
 }
 
 const helpers = {
-  getPlayersInfo: function (players) {
+  getPlayersInfo (players) {
     // call getUserInfo on each player in players, resolve only once ALL calls made
-    return axios.all(players.map(function(username){
-      return getUserInfo(username)
-    })).then(function(info){
-      // then parse the return data to get only what we want
-      return info.map(function(user){
-        return user.data;
+    return axios.all(players.map( (username) =>  getUserInfo(username)))
+    // then parse the return data to get only what we want
+      .then( (info) => info.map((user) => user.data))
+      .catch( (err) => {
+        console.warn('Error in getPlayersInfo', err);
       })
-    }).catch(function (err){
-      console.warn('Error in getPlayersInfo', err);
-    })
   },
-  battle: function (players) {
+  battle (players) {
     const playerOneData = getPlayersData(players[0]);
     const playerTwoData = getPlayersData(players[1]);
 
     return axios.all([playerOneData, playerTwoData])
       .then(calculateScores)
-      .catch(function (err) {
+      .catch( (err) => {
         console.warn('Error in getPlayersInfo: ', err)
       })
   }

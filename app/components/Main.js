@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import "../main.css" 
+import "../main.css"
 
 const Main = React.createClass({
-  render: function(){
+  render (){
     return (
       <div className='main-container'>
         <ReactCSSTransitionGroup
