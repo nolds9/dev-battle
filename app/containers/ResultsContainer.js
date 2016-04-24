@@ -9,15 +9,17 @@ const ResultsContainer = React.createClass({
       scores: []
     }
   },
-  componentDidMount () {
-    githubHelpers
-      .battle(this.props.location.state.playersInfo)
-      .then( (scores) => {
-         this.setState({
-           scores: scores,
-           isLoading: false
-         })
+  async componentDidMount () {
+    try {
+      const scores = await githubHelpers.battle(this.props.location.state.playersInfo)
+      this.setState({
+        scores,
+        isLoading: false
       })
+    } catch (e) {
+      console.warn("Error in ResultsContainer", e)
+    }
+
   },
   render () {
     return(
